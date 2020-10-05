@@ -12,15 +12,17 @@
 // Your code goes here
 //What did I use?
 
-//Keydown
-//mouseover
-//mouseout
-//click
-//dblclick
-
-//try out
-//resize
-//scroll
+//1.  Keydown
+//2.  MouseOver
+//3.  MouseOut
+//4.  Click
+//5.  DblClick
+//6.  ContextMenu
+//7.  Wheel
+//8.  load
+//9.  Keyup
+//10. MouseDown
+//11. MouseUp
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "l") {
@@ -44,9 +46,6 @@ document.addEventListener("keydown", (e) => {
     e.target.style.border = "1px solid red";
     console.log(e.key);
   } else {
-    console.log(
-      `Try spelling out L-A-M-B-D-A...You don't need: ${e.key}. NEVER USE : Z`
-    );
   }
 });
 
@@ -73,14 +72,24 @@ h1Change.addEventListener("click", () => {
 const h2Change = document.querySelector("h1");
 console.log("h1Change", h1Change);
 h2Change.addEventListener("dblclick", (e) => {
-  e.innerHTML = "Spell out LAMBDA";
+  e.target.innerHTML = "Spell out LAMBDA";
 });
 
 const zChange = document.querySelectorAll(".intro img");
-console.log(zChange);
-console.log(zChange[0]);
-zChange[0].addEventListener("click", function (e) {
+// console.log(zChange);
+// console.log(zChange[0]);
+zChange[0].addEventListener("load", function (e) {
   e.target.src = "https://picsum.photos/200";
+});
+
+const otherImages = document.querySelectorAll("img");
+console.log(otherImages);
+otherImages[1].addEventListener("mouseup", function (e) {
+  e.target.src = "https://picsum.photos/200";
+});
+
+otherImages[1].addEventListener("mousedown", function (e) {
+  e.target.src = "https://picsum.photos/300";
 });
 
 const backgroundChange = document.querySelector("body");
@@ -90,10 +99,23 @@ backgroundChange.addEventListener("wheel", function (e) {
   e.target.style.backgroundColor = "blue";
 });
 
-// const picZoom = document.querySelector(".intro img");
-// picZoom.addEventListener("fullscreenchange", function () {
-//   e.target.style.transform = "scale(1.2)";
-// });
+//more
+const allh2 = document.querySelectorAll("h2");
+// console.log("allh2", allh2);
+allh2[1].addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  console.log("Dont do that.");
+});
+
+const bodyColorChange = document.querySelector("body");
+console.log(bodyColorChange);
+bodyColorChange.addEventListener("resize", function (e) {
+  e.target.style.backgroundColor = "red";
+});
+
+document.addEventListener("keyup", (e) => {
+  console.log(`You let up ${e.key}`);
+});
 
 // console.log("navChange", navChange);
 // console.log("picChange", picChange);
